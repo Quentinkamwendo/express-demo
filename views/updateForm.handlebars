@@ -1,0 +1,31 @@
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            {{#with products}}
+                <form action="/products">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" class="form-control"
+                               id="productName" name="productName"
+                               placeholder="Enter product name" value="{{productName}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Number of Items</label>
+                        <input type="number" class="form-control"
+                               id="amount" name="amount"  placeholder="Enter amount" value="{{amount}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control"
+                               id="price" name="price"  placeholder="Enter price" value="{{price}}">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-2">Save</button>
+                </form>
+            {{/with}}
+
+        </div>
+    </div>
+</div>
+

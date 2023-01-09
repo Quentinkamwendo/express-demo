@@ -1,0 +1,63 @@
+
+<head>
+<link rel="stylesheet" href="public/intlTelInput.min.css_17.0.3/cdnjs/intlTelInput.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-6 mt-5">
+            <form action="/products" method="POST">
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" class="form-control"
+                           id="productName" name="productName" placeholder="Enter product name">
+                </div>
+                <div class="form-group">
+                    <label for="amount">Number of Items</label>
+                    <input type="number" class="form-control"
+                           id="amount" name="amount" placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control"
+                           id="price" name="price" placeholder="Enter price">
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            </form>
+        </div>
+        <div class="col-6 mt-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            Product
+                        </th>
+                        <th scope="col">Number of Items</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each products}}
+                        <tr>
+                            <td>{{productName}}</td>
+                            <td>{{amount}}</td>
+                            <td>{{price}}</td>
+                            <td class="d-flex">
+                                <a href="/products/update/{{id}}"
+                                   class="btn btn-outline-secondary mx-3" data-id="{{id}}">Update</a>
+                                <form action="/products/delete/{{id}}" method="POST">
+                                    <button type="submit" class="btn btn-outline-danger" data-id="{{id}}">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="mx-5">
+    <a class="btn btn-success mt-3" href="/home">Back Home</a>
+</div>
+
+</body>
