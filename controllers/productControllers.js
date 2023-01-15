@@ -49,7 +49,7 @@ const updateProduct = (req, res) => {
     connection.query('UPDATE products SET ? WHERE id = ?', [updatedProduct, id], (error) => {
         if (error) throw error;
 
-        res.redirect('/products').sendStatus(200);
+        res.redirect('/products');
     });
 }
 

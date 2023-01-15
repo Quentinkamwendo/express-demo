@@ -6,6 +6,7 @@ const session = require('express-session');
 const bcrypt = require("bcrypt");
 const handlebars = require('handlebars');
 const expressHandlebars = require('express-handlebars');
+const paginate = require('express-paginate');
 const path = require("path");
 const connection = require('./model/db');
 
@@ -83,11 +84,22 @@ app.use('/register', require('./routes/registerRouter'));
 app.use('/logout', require('./routes/logoutRoute'));
 app.use('/products', require('./routes/productRouters'));
 
+app.use(paginate.middleware(3, 50));
+
 app.get('/home', (req, res) => {
 
     if (req.isAuthenticated()) {
+        connection.query(`SELECT * FROM products`, (err, rows) => {
+            if (err) throw err;
+            const data = {
+                pageCount: Math.ceil(rows.length / req.query.limit),
+                itemCount: rows.length,
+                pages: paginate.getArrayPages(3, this.pageCount, req.query.page)
+            };
+            res.render('home', { title: 'HomePage', isLoggedIn: true, products: rows, data })
+        })
 
-        res.render('home', { title: 'HomePage', isLoggedIn: true })
+
 
     } else {
         res.send(`Not logged in <a href="/login">Go Back</a>`);
