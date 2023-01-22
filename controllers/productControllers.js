@@ -11,7 +11,8 @@ const createNewProduct = (req, res) => {
     const product = {
         productName: req.body.productName,
         amount: req.body.amount,
-        price: req.body.price
+        price: req.body.price,
+        image: req.body.image
     };
     connection.query(`INSERT INTO products SET ?`, [product], (error) => {
         if (error) throw error;
@@ -44,7 +45,8 @@ const updateProduct = (req, res) => {
     const updatedProduct = {
         productName: req.body.productName,
         amount: req.body.amount,
-        price: req.body.price
+        price: req.body.price,
+        image: req.body.image
     };
     connection.query('UPDATE products SET ? WHERE id = ?', [updatedProduct, id], (error) => {
         if (error) throw error;

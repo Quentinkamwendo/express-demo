@@ -6,22 +6,23 @@
 <div class="container">
     <div class="row">
         <div class="col-6 mt-5">
-            <form action="/products" method="POST">
+            <form action="/products" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="productName">Product Name</label>
-                    <input type="text" class="form-control"
+                    <input type="text" class="form-control mb-2"
                            id="productName" name="productName" placeholder="Enter product name">
                 </div>
                 <div class="form-group">
                     <label for="amount">Number of Items</label>
-                    <input type="number" class="form-control"
+                    <input type="number" class="form-control mb-2"
                            id="amount" name="amount" placeholder="Enter amount">
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="number" class="form-control"
+                    <input type="number" class="form-control mb-2"
                            id="price" name="price" placeholder="Enter price">
                 </div>
+                <input type="file" class="form-control" name="image">
                 <button type="submit" class="btn btn-primary mt-2">Submit</button>
             </form>
         </div>
@@ -32,6 +33,7 @@
                         <th scope="col">
                             Product
                         </th>
+                        <th>Image</th>
                         <th scope="col">Number of Items</th>
                         <th scope="col">Price</th>
                     </tr>
@@ -40,6 +42,7 @@
                     {{#each products}}
                         <tr>
                             <td>{{productName}}</td>
+                            <td><img src="{{image}}"></td>
                             <td>{{amount}}</td>
                             <td>{{price}}</td>
                             <td class="d-flex">

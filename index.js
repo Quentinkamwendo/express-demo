@@ -89,17 +89,12 @@ app.use(paginate.middleware(3, 50));
 app.get('/home', (req, res) => {
 
     if (req.isAuthenticated()) {
+
         connection.query(`SELECT * FROM products`, (err, rows) => {
             if (err) throw err;
-            const data = {
-                pageCount: Math.ceil(rows.length / req.query.limit),
-                itemCount: rows.length,
-                pages: paginate.getArrayPages(3, this.pageCount, req.query.page)
-            };
-            res.render('home', { title: 'HomePage', isLoggedIn: true, products: rows, data })
+
+            res.render('home', { title: 'HomePage', isLoggedIn: true, products: rows, })
         })
-
-
 
     } else {
         res.send(`Not logged in <a href="/login">Go Back</a>`);
