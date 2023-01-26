@@ -16,22 +16,23 @@
 
         {{#each products}}
             <div class="col-md-4">
-                <div class="card mt-2">
+                <div class="card my-2">
                     <div class="card-title">
                         <h4 class="card-header">{{productName}}</h4>
                     </div>
                     <div class="card-body">
                         <p class="card-text">Number of products: {{amount}}</p>
-                        <img src="/uploads/{{image}}" id="myImg" class="card-img w-25">
+                        <img src="/uploads/{{image}}" id="{{id}}" onclick="myModal(this.id)"
+                             class="card-img myImg w-25">
                         <div id="myModal" class="modal">
                             <span class="close">&times;</span>
-                            <img class="modal-content w-50 d-flex" id="img01">
+                            <img class="modal-content w-100 d-flex" id="img01">
                             <div id="caption"></div>
                         </div>
                         <p class="card-text">Price: {{price}}</p>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" id="{{id}}" onclick="done(this.id)">press</button>
+                        <button class="btn btn-primary new" onclick="done(this)">press</button>
                     </div>
 
                 </div>
@@ -40,6 +41,7 @@
     </div>
 
 </div>
+{{> footer}}
 
 <script src="/home.js"></script>
 
